@@ -1,6 +1,5 @@
 package net.bussab.MagicMod.util;
 
-import net.bussab.MagicMod.block.ModBlocks;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
@@ -14,8 +13,7 @@ public class ModBlockColours implements BlockColor {
         
         
 
-
-
+        
         return pLevel!=null && pPos!=null ? BiomeColors.getAverageWaterColor(pLevel, pPos) : -1;
     }
     

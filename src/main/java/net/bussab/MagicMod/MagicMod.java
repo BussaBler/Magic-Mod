@@ -84,7 +84,7 @@ public class MagicMod
         @SubscribeEvent
         public static void registerBlockColors(RegisterColorHandlersEvent.Block pEvent){
            pEvent.register(new ModBlockColours(), ModBlocks.CUSTOM_WATER.get());
-           pEvent.register(new ModBlockColours(), ModBlocks.CRUCIBLE.get());
+          
         }
 
 
