@@ -1,0 +1,23 @@
+{
+    "item.magicmod.fire_crystal": "Fire Crystal",
+    "item.magicmod.air_crystal": "Air Crystal",
+    "item.magicmod.water_crystal": "Water Crystal",
+    "item.magicmod.earth_crystal": "Earth Crystal",
+    "item.magicmod.dark_crystal": "Dark Crystal",
+    "item.magicmod.light_crystal": "Light Crystal",
+    "item.magicmod.mana_crystal": "Mana Crystal",
+
+    "item.magicmod.fire_shard": "Fire Shard",
+    "item.magicmod.air_shard": "Air Shard",
+    "item.magicmod.water_shard": "Water Shard",
+    "item.magicmod.earth_shard": "Earth Shard",
+    "item.magicmod.dark_shard": "Dark Shard",
+    "item.magicmod.light_shard": "Light Shard",
+    "item.magicmod.mana_shard": "Mana Shard",
+    "item.magicmod.blank_shard": "Blank Shard",
+    
+    
+    "creativetab.magic_mod": "Magic Tab"
+
+    
+}
