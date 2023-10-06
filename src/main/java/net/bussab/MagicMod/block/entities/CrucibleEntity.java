@@ -59,7 +59,7 @@ public class CrucibleEntity extends BlockEntity  {
     }
 
     public int getTank(){
-        return this.FLUID_TANK.getCapacity();
+        return this.FLUID_TANK.getFluidAmount();
     }
 
     

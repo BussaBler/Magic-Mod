@@ -26,30 +26,22 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
 
     public CrucibleBERenderer (BlockEntityRendererProvider.Context pContext){
        
-       
-
-
-
-
     }
 
     
-    
-
-
-
     @Override
     public void render(CrucibleEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
             int pPackedLight, int pPackedOverlay) {
 
         BlockRenderDispatcher blockRenderDispatcher = Minecraft.getInstance().getBlockRenderer();
         BlockState blockState = ModBlocks.CUSTOM_WATER.get().defaultBlockState();
-        
+        int fluidHeight = pBlockEntity.getTank();
+        double correctFluidHeight =  fluidHeight*0.0006875 - 0.6875;
         
 
         pPoseStack.pushPose();
         pPoseStack.scale(0.9375f, 0.9375f, 0.9375f);
-        
+        pPoseStack.translate(0, correctFluidHeight, 0);
        
         renderSingleBlock(blockRenderDispatcher, blockState, pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.translucent());
         pPoseStack.popPose();
@@ -64,7 +56,7 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
          switch (rendershape) {
             case MODEL:
                BakedModel bakedmodel = pDispatcher.getBlockModel(pState);
-               int i = 4159204;
+               int i = 0x3F76E4; //Shade of blue for minecraft's water
                float f = (float)(i >> 16 & 255) / 255.0F;
                float f1 = (float)(i >> 8 & 255) / 255.0F;
                float f2 = (float)(i & 255) / 255.0F;
