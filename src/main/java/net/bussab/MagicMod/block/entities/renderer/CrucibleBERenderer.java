@@ -35,17 +35,18 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
 
         BlockRenderDispatcher blockRenderDispatcher = Minecraft.getInstance().getBlockRenderer();
         BlockState blockState = ModBlocks.CUSTOM_WATER.get().defaultBlockState();
-        int fluidHeight = pBlockEntity.getTank();
-        double correctFluidHeight =  fluidHeight*0.0006875 - 0.6875;
-        
+        if(pBlockEntity.getTank() > 0 ){
+            int fluidHeight = pBlockEntity.getTank();
+            double correctFluidHeight =  fluidHeight*0.0006875 - 0.6875;
+            
 
-        pPoseStack.pushPose();
-        pPoseStack.scale(0.9375f, 0.9375f, 0.9375f);
-        pPoseStack.translate(0, correctFluidHeight, 0);
-       
-        renderSingleBlock(blockRenderDispatcher, blockState, pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.translucent());
-        pPoseStack.popPose();
+            pPoseStack.pushPose();
+            pPoseStack.scale(0.9375f, 0.9375f, 0.9375f);
+            pPoseStack.translate(0, correctFluidHeight, 0);
         
+            renderSingleBlock(blockRenderDispatcher, blockState, pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.translucent());
+            pPoseStack.popPose();
+        }
         
     }
 
@@ -66,6 +67,7 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
             case ENTITYBLOCK_ANIMATED:
             ItemStack stack = new ItemStack(pState.getBlock());
             net.minecraftforge.client.extensions.common.IClientItemExtensions.of(stack).getCustomRenderer().renderByItem(stack, ItemDisplayContext.NONE, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay);
+            case INVISIBLE:
         }
 
       }

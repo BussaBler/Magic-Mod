@@ -11,6 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -62,15 +63,17 @@ public class Crucible extends BaseEntityBlock  {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
       SUCCESS = false;
-      
+      if (!pLevel.isClientSide()){
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         CrucibleEntity CBE = (CrucibleEntity) pLevel.getBlockEntity(pPos);
 
         itemstack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(IFluidHandlerItem -> {
-
-        int drainAmount = Math.min(CBE.getTank(), 1000);
+        
+        int drainAmount = Math.min(CBE.getTankSize(), 1000);
         FluidStack fStack = IFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
+        System.out.println(fStack.getFluid());
         if (fStack.getFluid() == Fluids.WATER){
+            
             fStack = IFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
             CBE.fillTank(fStack);
             pPlayer.setItemInHand(pHand, IFluidHandlerItem.getContainer());
@@ -78,11 +81,23 @@ public class Crucible extends BaseEntityBlock  {
         }
           
         });
-      
+      }
       if (SUCCESS == true) return InteractionResult.sidedSuccess(pLevel.isClientSide());
       
       else return InteractionResult.PASS;
     }
+
+    @Override
+    public void entityInside(BlockState pBlockState,Level pLevel, BlockPos pPos, Entity pEntity){
+        CrucibleEntity CE = ((CrucibleEntity)pLevel.getBlockEntity(pPos));
+        
+        if (pEntity instanceof ItemEntity){
+          ItemEntity itemEntity = ((ItemEntity)pEntity);
+          CE.attemptSmelt(itemEntity, itemEntity.getDeltaMovement());
+          
+        }
+    }
+
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
       return SHAPE;
@@ -133,7 +148,7 @@ public class Crucible extends BaseEntityBlock  {
       RandomSource randomSource = pLevel.getRandom();
       
      
-      pLevel.addAlwaysVisibleParticle(simpleParticleType, true, pPos.getX()+randomSource.nextDouble(), (double)pPos.getY()+1, pPos.getZ()+randomSource.nextDouble(), 0d, 0d, 0d);
+      pLevel.addAlwaysVisibleParticle(simpleParticleType, true, pPos.getX()+randomSource.nextDouble()-(3/16), (double)pPos.getY()+1, pPos.getZ()+randomSource.nextDouble()-(3/16), 0d, 0d, 0d);
     }
 
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom){

@@ -4,10 +4,11 @@ import com.mojang.logging.LogUtils;
 
 import net.bussab.MagicMod.block.ModBlocks;
 import net.bussab.MagicMod.block.entities.ModBlockEntities;
+import net.bussab.MagicMod.essentia.ConfigEssentia;
 import net.bussab.MagicMod.item.ModCreativeTab;
 import net.bussab.MagicMod.item.ModItems;
 import net.bussab.MagicMod.particles.ModParticles;
-import net.bussab.MagicMod.util.CrucibleInteractions;
+import net.bussab.MagicMod.recipe.ConfigRecipes;
 import net.bussab.MagicMod.util.ModBlockColours;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -44,6 +45,7 @@ public class MagicMod
         ModCreativeTab.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModParticles.register(modEventBus);
+       
         
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -56,7 +58,7 @@ public class MagicMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        event.enqueueWork(()-> {CrucibleInteractions.boostrap();});
+
     }
 
     // Add the example block item to the building blocks tab
@@ -77,8 +79,11 @@ public class MagicMod
     public static class ClientModEvents
     {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event){
+            ConfigEssentia.postInit();
+            ConfigRecipes.initializeAlchemyRecipes();
+
+        
            
         }
         @SubscribeEvent
@@ -87,6 +92,8 @@ public class MagicMod
           
         }
 
+        
+       
 
     }
 }
