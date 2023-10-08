@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
+import net.bussab.MagicMod.item.ModItems;
+import net.minecraft.world.item.Item;
+
 public class Essentia {
     
     String name; 
@@ -11,14 +14,16 @@ public class Essentia {
     private int number;
     public static HashMap<String, Essentia> Dictonary = new HashMap<>();
     private static HashMap<Integer, Essentia> Enumeration = new HashMap<>();
+    public static HashMap<Essentia, Item> ShardCatalog = new HashMap<>();
 
 
-    public Essentia(String name, @Nullable Essentia[] components, int number) {
+    public Essentia(String name, @Nullable Essentia[] components, int number, Item shard) {
         this.name = name;
         this.components = components;
         this.number = number;
         Dictonary.put(name, this);
         Enumeration.put(number, this);
+        ShardCatalog.put(this, shard);
     }
 
 
@@ -47,12 +52,12 @@ public class Essentia {
 
     //////////////////PRIMARIA ESSENTIA//////////////////
 
-    public static Essentia AIR = new Essentia("air", null, 1);
-    public static Essentia FIRE = new Essentia("ignis", null, 2);
-    public static Essentia WATER = new Essentia("aqua", null, 3);
-    public static Essentia EARTH = new Essentia("terra", null, 4);
-    public static Essentia LIGHT = new Essentia("lux", null, 5);
-    public static Essentia DARK = new Essentia("tenebris", null, 6);
+    public static Essentia AIR = new Essentia("air", null, 1, ModItems.AIR_SHARD.get());
+    public static Essentia FIRE = new Essentia("ignis", null, 2, ModItems.FIRE_SHARD.get());
+    public static Essentia WATER = new Essentia("aqua", null, 3, ModItems.WATER_SHARD.get());
+    public static Essentia EARTH = new Essentia("terra", null, 4, ModItems.EARTH_SHARD.get());
+    public static Essentia LIGHT = new Essentia("lux", null, 5, ModItems.LIGHT_SHARD.get());
+    public static Essentia DARK = new Essentia("tenebris", null, 6, ModItems.DARK_CRYSTAL.get());
     
 
 

@@ -1,5 +1,7 @@
 package net.bussab.MagicMod.item;
 
+import java.util.HashMap;
+
 import net.bussab.MagicMod.MagicMod;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -9,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     
+    public static final HashMap<String, RegistryObject<Item>> shardCatalog = new HashMap<>();
     
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MagicMod.MOD_ID);
     
@@ -21,7 +24,10 @@ public class ModItems {
     public static final RegistryObject<Item> MANA_CRYSTAL = ITEMS.register("mana_crystal", ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> BLANK_SHARD = ITEMS.register("blank_shard", ()-> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> FIRE_SHARD = ITEMS.register("fire_shard", ()-> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> FIRE_SHARD = ITEMS.register("fire_shard", ()-> new Item(new Item.Properties())); 
+    
+
     public static final RegistryObject<Item> AIR_SHARD = ITEMS.register("air_shard", ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WATER_SHARD = ITEMS.register("water_shard", ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EARTH_SHARD = ITEMS.register("earth_shard", ()-> new Item(new Item.Properties()));
@@ -35,5 +41,8 @@ public class ModItems {
         ITEMS.register(pEventBus);
     }
 
+    
+    
 
-}
+    
+    }       

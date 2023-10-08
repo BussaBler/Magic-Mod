@@ -11,11 +11,11 @@ import net.bussab.MagicMod.recipe.CrucibleRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -35,16 +35,16 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 public class CrucibleEntity extends BlockEntity  {
     
-    private static int tickCount;
+    
     private int HEAT;
     private final FluidTank FLUID_TANK = createFluidTank();
-    private EssentiaList essentiaList;
+    private EssentiaList essentiaList = new EssentiaList();
 
     private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
     public CrucibleEntity( BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.CRUCIBLE_BE.get(), pPos, pBlockState);
-        this.essentiaList= new EssentiaList();
+        
         
     }
 
@@ -96,59 +96,43 @@ public class CrucibleEntity extends BlockEntity  {
     }
 
     protected void saveAdditional(CompoundTag pTag){
-        CompoundTag NBT = new CompoundTag();
-
-        NBT.putInt("heat", HEAT);
-        NBT.putInt("tickcount", tickCount);
-        NBT = FLUID_TANK.writeToNBT(NBT);
-        NBT.putInt("size", essentiaList.getEssentias().length);
-        int i = 0;
-        for (Essentia E:essentiaList.getEssentias()){
-            NBT.putString(i+"Essentia", E.getName());
-            NBT.putInt(i+"Amount", essentiaList.getAmount(E));
-            ++i;
-        }
         
-        pTag.put("tag1", NBT);
+        pTag.putInt("heat", this.HEAT);
+        pTag = FLUID_TANK.writeToNBT(pTag);
+        
+        writeEssentiaToNBT(pTag, this.essentiaList);
+
         super.saveAdditional(pTag);
+        
     }
 
     public void load(CompoundTag pTag){
         super.load(pTag);
-        CompoundTag NBT = pTag.getCompound("tag1");
-
-        this.HEAT = NBT.getInt("heat");
-        tickCount = NBT.getInt("tickcount");
         
-        this.FLUID_TANK.readFromNBT(NBT);
-        int size = NBT.getInt("size");
-        for (int i = 0; i<size; i++){
-            essentiaList.add(Essentia.getEssentia(NBT.getString(i+"E")), NBT.getInt(i+"A"));
-        }
+
+        this.HEAT = pTag.getInt("heat");
+        this.FLUID_TANK.readFromNBT(pTag);
+        readEssentiaFromNBT(pTag);
+        
+        
 
     }
 
     @Override
     public CompoundTag getUpdateTag() {
-        CompoundTag NBT = super.getUpdateTag();
-        saveAdditional(NBT);
-        return NBT;
+        return saveWithoutMetadata();
     }
     
-    @Override
-    public void handleUpdateTag(CompoundTag pTag){
-        load(pTag);
-    }
-
     @Override 
     public Packet<ClientGamePacketListener> getUpdatePacket(){
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
+    
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pPacket){
-        handleUpdateTag(pPacket.getTag());
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt){
+        super.onDataPacket(net, pkt);
     }
+    
     
     public int getHeat(){
         return this.HEAT;
@@ -167,13 +151,17 @@ public class CrucibleEntity extends BlockEntity  {
                 if (this.HEAT < 200){
                     ++this.HEAT;
                     this.level.sendBlockUpdated(pPos, pState1, pState1, 3);
+                    setChanged(pLevel, pPos, pState1);
+                    
                 }
             }
             
             else if (this.HEAT > 0){
                     --this.HEAT;
                     this.level.sendBlockUpdated(pPos, pState1, pState1, 3);
+                    setChanged(pLevel, pPos, pState1);
             }
+            
         }
     }
 
@@ -197,6 +185,7 @@ public class CrucibleEntity extends BlockEntity  {
                 ejectItem(out, pVec3);
                 
                 item.kill();
+                setChanged(level, worldPosition, getBlockState());
             }
 
             else {
@@ -208,12 +197,13 @@ public class CrucibleEntity extends BlockEntity  {
                     }
                     level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
                     item.kill();
+                    setChanged();
                 }
             }
         }
-        if (craftDone && !level.isClientSide())
+        
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-
+        
     }
 
     private void ejectItem(ItemStack out, Vec3 pVec3) {
@@ -227,8 +217,32 @@ public class CrucibleEntity extends BlockEntity  {
 
 
     }
-    
 
+
+    private void writeEssentiaToNBT(CompoundTag pTag, EssentiaList list){
+        ListTag lTag = new ListTag();
+        
+        pTag.put("Essentia", lTag);
+        
+        
+        for (Essentia E: list.getEssentias()){
+            
+            CompoundTag T = new CompoundTag();
+            T.putString("key", E.getName());
+            T.putInt("amount", list.getAmount(E));
+            lTag.add(T);
+        }
+        
+    }
+    
+    private void readEssentiaFromNBT(CompoundTag pTag){
+        ListTag lTag = pTag.getList("Essentia", (byte)10);
+            for (int i = 0; i < lTag.size(); i++){
+                CompoundTag T = lTag.getCompound(i);
+                
+                this.essentiaList.add(Essentia.getEssentia(T.getString("key")), T.getInt("amount"));
+            }
+    }
     
      
     
