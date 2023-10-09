@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:item/generated",
-    "textures": {
-      "layer0": "magicmod:item/salis_mundus"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "magicmod:item/salis_mundus"
   }
+}

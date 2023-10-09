@@ -1,0 +1,30 @@
+{
+    "parent": "block/cube",
+    "textures": {
+      "down": "magicmod:block/air", 
+      "up": "minecraft:block/water_still",  
+      "north": "magicmod:block/air",    
+      "south": "magicmod:block/air",    
+      "west": "magicmod:block/air",     
+      "east": "magicmod:block/air"  
+    },   
+    "elements": [
+      {
+        "from": [0, 0, 0],
+        "to": [16, 16, 16],
+        "faces": {
+          "down": { "texture": "#down" },
+          "up": { "texture": "#up", "tintindex": 0 }, 
+          "north": { "texture": "#north" },
+          "south": { "texture": "#south" },
+          "west": { "texture": "#west" },
+          "east": { "texture": "#east" }
+        }
+      }
+    ]
+  }
+  
+  
+  
+  
+  

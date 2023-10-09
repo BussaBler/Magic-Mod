@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "magicmod:item/dark_shard"
+    "layer0": "magicmod:item/death_shard"
   }
 }

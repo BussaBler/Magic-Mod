@@ -29,9 +29,43 @@ public class ModCreativeTab {
         pOutput.accept(ModItems.WATER_SHARD.get());
         pOutput.accept(ModItems.EARTH_SHARD.get());
         pOutput.accept(ModItems.AIR_SHARD.get());
-        pOutput.accept(ModItems.DARK_SHARD.get());
-        pOutput.accept(ModItems.LIGHT_SHARD.get());
+        pOutput.accept(ModItems.ENTROPY_SHARD.get());
+        pOutput.accept(ModItems.ORDER_SHARD.get());
         pOutput.accept(ModItems.MANA_SHARD.get());
+        pOutput.accept(ModItems.VOID_SHARD.get());
+        pOutput.accept(ModItems.LIGHT_SHARD.get());
+        pOutput.accept(ModItems.MOTION_SHARD.get());
+        pOutput.accept(ModItems.COLD_SHARD.get());
+        pOutput.accept(ModItems.CRYSTAL_SHARD.get());
+        pOutput.accept(ModItems.METAL_SHARD.get());
+        pOutput.accept(ModItems.LIFE_SHARD.get());
+        pOutput.accept(ModItems.DEATH_SHARD.get());
+        pOutput.accept(ModItems.ENERGY_SHARD.get());
+        pOutput.accept(ModItems.EXCHANGE_SHARD.get());
+        pOutput.accept(ModItems.MAGIC_SHARD.get());
+        pOutput.accept(ModItems.AURA_SHARD.get());
+        pOutput.accept(ModItems.ALCHEMY_SHARD.get());
+        pOutput.accept(ModItems.FLUX_SHARD.get());
+        pOutput.accept(ModItems.DARKNESS_SHARD.get());
+        pOutput.accept(ModItems.ELDRITCH_SHARD.get());
+        pOutput.accept(ModItems.FLIGHT_SHARD.get());
+        pOutput.accept(ModItems.PLANT_SHARD.get());
+        pOutput.accept(ModItems.TOOL_SHARD.get());
+        pOutput.accept(ModItems.CRAFT_SHARD.get());
+        pOutput.accept(ModItems.MECHANISM_SHARD.get());
+        pOutput.accept(ModItems.TRAP_SHARD.get());
+        pOutput.accept(ModItems.SOUL_SHARD.get());
+        pOutput.accept(ModItems.MIND_SHARD.get());
+        pOutput.accept(ModItems.SENSES_SHARD.get());
+        pOutput.accept(ModItems.AVERSION_SHARD.get());
+        pOutput.accept(ModItems.PROTECT_SHARD.get());
+        pOutput.accept(ModItems.DESIRE_SHARD.get());
+        pOutput.accept(ModItems.UNDEAD_SHARD.get());
+        pOutput.accept(ModItems.BEAST_SHARD.get());
+        pOutput.accept(ModItems.MAN_SHARD.get());
+
+
+
         pOutput.accept(ModItems.SALIS_MUNDUS.get());
 
 
