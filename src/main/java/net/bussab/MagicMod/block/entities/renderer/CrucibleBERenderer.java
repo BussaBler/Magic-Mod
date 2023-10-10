@@ -1,27 +1,40 @@
 package net.bussab.MagicMod.block.entities.renderer;
 
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 
 import net.bussab.MagicMod.block.ModBlocks;
 import net.bussab.MagicMod.block.entities.CrucibleEntity;
+import net.bussab.MagicMod.essentia.Essentia;
+import net.bussab.MagicMod.gui.HoverTextRender;
+import net.bussab.MagicMod.item.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.model.data.ModelData;
 
 public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
 
 
-    
+        
     
 
     public CrucibleBERenderer (BlockEntityRendererProvider.Context pContext){
@@ -46,6 +59,57 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
         
             renderSingleBlock(blockRenderDispatcher, blockState, pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.translucent());
             pPoseStack.popPose();
+        }
+        
+        if (HoverTextRender.hovering == true && !pBlockEntity.getEssentiaList().isEmpty()){
+            //Font font = Minecraft.getInstance().font;
+            
+            Vec3 blockVec = new Vec3(pBlockEntity.getBlockPos().getX() + 0.5, 0.5, pBlockEntity.getBlockPos().getZ() + 0.5);
+            Vec3 playerVec = new Vec3(Minecraft.getInstance().player.getX(), Minecraft.getInstance().player.getY(), Minecraft.getInstance().player.getZ());
+            Vec3 toPlayer = playerVec.subtract(blockVec).normalize(); // Direction from block to player
+
+            // Calculate the rotation angle based on the direction vector
+            float yaw = (float) Math.atan2(-toPlayer.x, toPlayer.z);
+            
+            int length = pBlockEntity.getEssentiaList().getEssentias().length;
+            float i = (float)-(Math.floor(length/2))*0.2f;
+            if (length%2==0) {i+=0.1;}
+            
+            
+
+            for (Essentia E : pBlockEntity.getEssentiaList().getEssentias()) {
+
+                Component C = Component.literal("TESTE");
+                
+                pPoseStack.pushPose();
+                pPoseStack.translate(0.5 , 1.5, 0.5); // Adjust the translation as needed
+                pPoseStack.translate(i*Math.cos(yaw), 0, (i)*Math.sin(yaw));
+                pPoseStack.scale(0.2F, 0.2F, 0.2F);
+                
+                
+                pPoseStack.mulPose(Axis.YP.rotation(-yaw)); // Rotate based on yaw
+                
+                Matrix4f matrix4f = pPoseStack.last().pose();
+                ItemStack II = new ItemStack(ModItems.SALIS_MUNDUS.get());
+                if (E.getNumber() == 2){ II = ModItems.FIRE_SYMBOL.get().getDefaultInstance();}
+                if (E.getNumber() == 3){ II = ModItems.WATER_SYMBOL.get().getDefaultInstance();}
+                if (E.getNumber() == 4){ II = ModItems.EARTH_SYMBOL.get().getDefaultInstance();}
+
+
+
+                ItemRenderer IR = Minecraft.getInstance().getItemRenderer();
+                IR.renderStatic(II, ItemDisplayContext.GUI, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), 1);
+                i+=0.2;
+                pPoseStack.popPose();
+            }
+            
+            
+            
+            //float f1 = Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
+            //int j = (int) (f1 * 255.0F) << 24;
+            //float f2 = (-font.width(C));
+            //font.drawInBatch(C, f2, 0, 553648127, false, matrix4f, pBuffer, Font.DisplayMode.NORMAL, j, pPackedLight);
+            //pPoseStack.popPose();
         }
         
     }

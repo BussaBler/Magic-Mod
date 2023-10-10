@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-08T21:10:56.3512696	Item Models: magicmod
+// 1.20.1	2023-10-09T19:51:09.5772399	Item Models: magicmod
 bddaf10e575a48fb42d69aedc62c2280ab9a43d2 assets/magicmod/models/item/air_crystal.json
 77e328ff7444bca9809cac8f0aa9da7eaca8c9b3 assets/magicmod/models/item/air_shard.json
 c7f957f2989f522bb882c37ea80baef0f806d147 assets/magicmod/models/item/alchemy_shard.json
@@ -15,14 +15,17 @@ df1827f8ce67f1b31ac62305b54ed34d9acd4312 assets/magicmod/models/item/dark_crysta
 d52f5eeb02a0618e948b1322790a2e600c5f6f60 assets/magicmod/models/item/desire_shard.json
 6cd8c4d857e2b4f88f0a02f4306001734520905a assets/magicmod/models/item/earth_crystal.json
 b4149480f2d9c90265d332a58f9d64969b7cd340 assets/magicmod/models/item/earth_shard.json
+5dc84ae2a1f32167b232e53a4c95d79bca5cc7d8 assets/magicmod/models/item/earth_symbol.json
 80de462db112a49f09b9189652f3d699d60de0ca assets/magicmod/models/item/eldritch_shard.json
 2fc4c897ab67557dad43ad059d0d50cd29d12790 assets/magicmod/models/item/energy_shard.json
 ae3b4228f97987e3fbce32f1702216671d25d39d assets/magicmod/models/item/entropy_shard.json
 b8836b0d2191f4d931acb93893379cd976856133 assets/magicmod/models/item/exchange_shard.json
 0953c1540b445747c2591a616f52d30084faf598 assets/magicmod/models/item/fire_crystal.json
 a4b7353827e78cd0da93fe54568b2fc2198d97ed assets/magicmod/models/item/fire_shard.json
+76e54e9754bdc9aa191f1fe744e1b01452858d53 assets/magicmod/models/item/fire_symbol.json
 6ac8065560139d7d20e372c013b039c194154de5 assets/magicmod/models/item/flight_shard.json
 c41bbbbebc763f0ccdfdc36dd412c7806cd23e56 assets/magicmod/models/item/flux_shard.json
+2077660d6f52e17ea3d01ac8d22ebf0bd6ff4862 assets/magicmod/models/item/goggles.json
 8fafbf315fec33b3765bde91e280a85b6b470f43 assets/magicmod/models/item/life_shard.json
 ac78afde28b078747d361ca6d188681e05106ec3 assets/magicmod/models/item/light_crystal.json
 28d594c8feeb62652dd7bbe762f110cbc250bfde assets/magicmod/models/item/light_shard.json
@@ -46,3 +49,4 @@ a2097f3275355f413277b891e05db735d345b31e assets/magicmod/models/item/undead_shar
 0bfb7264b07dd1f88afe06055fb7625f6d5c4409 assets/magicmod/models/item/void_shard.json
 80dc928017bd0f8113a025630fea50bbc5faf719 assets/magicmod/models/item/water_crystal.json
 3d5a41f33fbae59f49550c7fcfc69d6bdf398855 assets/magicmod/models/item/water_shard.json
+738bdb0f4372f466d68b62d256d867b67219bb2e assets/magicmod/models/item/water_symbol.json

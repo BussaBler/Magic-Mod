@@ -3,6 +3,8 @@ package net.bussab.MagicMod.item;
 import java.util.HashMap;
 
 import net.bussab.MagicMod.MagicMod;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -69,6 +71,14 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> SALIS_MUNDUS = ITEMS.register("salis_mundus", ()-> new SalisMundus(new Item.Properties()));
+    public static final RegistryObject<Item> GOGGLES = ITEMS.register("goggles", ()-> new Goggles(ArmorMaterials.LEATHER, ArmorItem.Type.HELMET, (new Item.Properties())));
+
+
+    ///////SIMBOLS///////
+
+    public static final RegistryObject<Item> FIRE_SYMBOL = ITEMS.register("fire_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> WATER_SYMBOL = ITEMS.register("water_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> EARTH_SYMBOL = ITEMS.register("earth_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus pEventBus){
         ITEMS.register(pEventBus);

@@ -138,7 +138,9 @@ public class CrucibleEntity extends BlockEntity  {
         return this.HEAT;
     }
 
-
+    public EssentiaList getEssentiaList(){
+        return this.essentiaList;
+    }
 
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState1) {

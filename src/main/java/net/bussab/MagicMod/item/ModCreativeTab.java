@@ -64,6 +64,9 @@ public class ModCreativeTab {
         pOutput.accept(ModItems.BEAST_SHARD.get());
         pOutput.accept(ModItems.MAN_SHARD.get());
 
+        
+        pOutput.accept(ModItems.GOGGLES.get());
+
 
 
         pOutput.accept(ModItems.SALIS_MUNDUS.get());

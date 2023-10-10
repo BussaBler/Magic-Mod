@@ -53,7 +53,12 @@ public class EssentiaList implements Serializable {
 
     public EssentiaList remove(Essentia key){
         essentia.remove(key);
+        
         return this;
+    }
+
+    public boolean isEmpty(){
+        return essentia.isEmpty();
     }
 
 }

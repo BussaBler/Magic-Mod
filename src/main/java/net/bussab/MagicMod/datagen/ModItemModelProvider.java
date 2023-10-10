@@ -69,6 +69,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BEAST_SHARD);
         simpleItem(ModItems.MAN_SHARD);
 
+        simpleItem(ModItems.GOGGLES);
+
+        simpleItem(ModItems.FIRE_SYMBOL);
+        simpleItem(ModItems.WATER_SYMBOL);
+        simpleItem(ModItems.EARTH_SYMBOL);
     }
 
 
