@@ -90,12 +90,8 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
                 pPoseStack.mulPose(Axis.YP.rotation(-yaw)); // Rotate based on yaw
                 
                 Matrix4f matrix4f = pPoseStack.last().pose();
-                ItemStack II = new ItemStack(ModItems.SALIS_MUNDUS.get());
-                if (E.getNumber() == 2){ II = ModItems.FIRE_SYMBOL.get().getDefaultInstance();}
-                if (E.getNumber() == 3){ II = ModItems.WATER_SYMBOL.get().getDefaultInstance();}
-                if (E.getNumber() == 4){ II = ModItems.EARTH_SYMBOL.get().getDefaultInstance();}
-
-
+                ItemStack II = new ItemStack(Essentia.SymbolChart.get(E));
+                
 
                 ItemRenderer IR = Minecraft.getInstance().getItemRenderer();
                 IR.renderStatic(II, ItemDisplayContext.GUI, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), 1);

@@ -1,7 +1,9 @@
-// 1.20.1	2023-10-09T19:51:09.5772399	Item Models: magicmod
+// 1.20.1	2023-10-10T19:24:28.3092205	Item Models: magicmod
 bddaf10e575a48fb42d69aedc62c2280ab9a43d2 assets/magicmod/models/item/air_crystal.json
 77e328ff7444bca9809cac8f0aa9da7eaca8c9b3 assets/magicmod/models/item/air_shard.json
 c7f957f2989f522bb882c37ea80baef0f806d147 assets/magicmod/models/item/alchemy_shard.json
+121c6c6c5a53122233c0f3b175828b8c227ef510 assets/magicmod/models/item/all_shard.json
+dcec87d61b913f72f8bca1dad34e7433187c7d05 assets/magicmod/models/item/all_symbol.json
 0c35bf660932ace7496e31e1d71f291619434bb8 assets/magicmod/models/item/aura_shard.json
 4ac8debdf1dc0b0f8c760a05c87c719b637b6305 assets/magicmod/models/item/aversion_shard.json
 76527fa61912da5fb09bf221165e72cd5e4e2f28 assets/magicmod/models/item/beast_shard.json
@@ -19,6 +21,7 @@ b4149480f2d9c90265d332a58f9d64969b7cd340 assets/magicmod/models/item/earth_shard
 80de462db112a49f09b9189652f3d699d60de0ca assets/magicmod/models/item/eldritch_shard.json
 2fc4c897ab67557dad43ad059d0d50cd29d12790 assets/magicmod/models/item/energy_shard.json
 ae3b4228f97987e3fbce32f1702216671d25d39d assets/magicmod/models/item/entropy_shard.json
+aaee541a391887dbfb2dbfdd5773a6e309bb0304 assets/magicmod/models/item/entropy_symbol.json
 b8836b0d2191f4d931acb93893379cd976856133 assets/magicmod/models/item/exchange_shard.json
 0953c1540b445747c2591a616f52d30084faf598 assets/magicmod/models/item/fire_crystal.json
 a4b7353827e78cd0da93fe54568b2fc2198d97ed assets/magicmod/models/item/fire_shard.json
@@ -31,13 +34,13 @@ ac78afde28b078747d361ca6d188681e05106ec3 assets/magicmod/models/item/light_cryst
 28d594c8feeb62652dd7bbe762f110cbc250bfde assets/magicmod/models/item/light_shard.json
 03b46cb3bb871e3635f1c8397923b45c4616eb72 assets/magicmod/models/item/magic_shard.json
 c66489c82eee8d638ac6d429a8b1a041eb209872 assets/magicmod/models/item/mana_crystal.json
-ff7e0842e38f8dda9b09c3592d70584cf204410e assets/magicmod/models/item/mana_shard.json
 873bb79bd53991a9f04b49b056e8502075c3abe6 assets/magicmod/models/item/man_shard.json
 ec2c738a0650cee1a9c1f6cc0345c541f694d9c6 assets/magicmod/models/item/mechanism_shard.json
 13dea6b8df0a812b37853614acc7eeb2a7087548 assets/magicmod/models/item/metal_shard.json
 cab7db7923afaee91eb5e8c578214d6a4935af6d assets/magicmod/models/item/mind_shard.json
 b09778d65d63eb5b45cc708c91f7edecc40a582a assets/magicmod/models/item/motion_shard.json
 54e72599283fa2bbd817e0c68f5f8abeabf7347c assets/magicmod/models/item/order_shard.json
+4b9b0dc3aeb5c290b6664fe24bcfcfe214c111dd assets/magicmod/models/item/order_symbol.json
 f6174882a8afbf8194c1110e64586b7bc38f8b7e assets/magicmod/models/item/plant_shard.json
 a95abcf309722fa5d9c61abf03877e5d2d052773 assets/magicmod/models/item/protect_shard.json
 a9b18414b9b7f136b78cede9818c2d6d3f184f0d assets/magicmod/models/item/salis_mundus.json

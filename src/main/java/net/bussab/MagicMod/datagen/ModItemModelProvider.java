@@ -33,7 +33,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.AIR_SHARD);
         simpleItem(ModItems.ENTROPY_SHARD);
         simpleItem(ModItems.LIGHT_SHARD);
-        simpleItem(ModItems.MANA_SHARD);
+        simpleItem(ModItems.ALL_SHARD);
         simpleItem(ModItems.BLANK_SHARD);
         simpleItem(ModItems.SALIS_MUNDUS);
 
@@ -74,6 +74,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.FIRE_SYMBOL);
         simpleItem(ModItems.WATER_SYMBOL);
         simpleItem(ModItems.EARTH_SYMBOL);
+        simpleItem(ModItems.ORDER_SYMBOL);
+        simpleItem(ModItems.ENTROPY_SYMBOL);
+        simpleItem(ModItems.ALL_SYMBOL);
     }
 
 

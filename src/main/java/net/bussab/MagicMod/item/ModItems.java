@@ -33,7 +33,7 @@ public class ModItems {
     public static final RegistryObject<Item> EARTH_SHARD = ITEMS.register("earth_shard", ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ENTROPY_SHARD = ITEMS.register("entropy_shard", ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ORDER_SHARD = ITEMS.register("order_shard", ()-> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> MANA_SHARD = ITEMS.register("mana_shard", ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ALL_SHARD = ITEMS.register("all_shard", ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> VOID_SHARD = ITEMS.register("void_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LIGHT_SHARD = ITEMS.register("light_shard", () -> new Item(new Item.Properties()));
@@ -79,6 +79,42 @@ public class ModItems {
     public static final RegistryObject<Item> FIRE_SYMBOL = ITEMS.register("fire_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> WATER_SYMBOL = ITEMS.register("water_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> EARTH_SYMBOL = ITEMS.register("earth_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> AIR_SYMBOL = ITEMS.register("air_symbol", ()-> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ENTROPY_SYMBOL = ITEMS.register("entropy_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ORDER_SYMBOL = ITEMS.register("order_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ALL_SYMBOL = ITEMS.register("all_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> VOID_SYMBOL = ITEMS.register("void_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> LIGHT_SYMBOL = ITEMS.register("light_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MOTION_SYMBOL = ITEMS.register("motion_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> COLD_SYMBOL = ITEMS.register("cold_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> CRYSTAL_SYMBOL = ITEMS.register("crystal_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> METAL_SYMBOL = ITEMS.register("metal_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> LIFE_SYMBOL = ITEMS.register("life_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DEATH_SYMBOL = ITEMS.register("death_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ENERGY_SYMBOL = ITEMS.register("energy_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> EXCHANGE_SYMBOL = ITEMS.register("exchange_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MAGIC_SYMBOL = ITEMS.register("magic_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> AURA_SYMBOL = ITEMS.register("aura_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ALCHEMY_SYMBOL = ITEMS.register("alchemy_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FLUX_SYMBOL = ITEMS.register("flux_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DARKNESS_SYMBOL = ITEMS.register("darkness_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ELDRITCH_SYMBOL = ITEMS.register("eldritch_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FLIGHT_SYMBOL = ITEMS.register("flight_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> PLANT_SYMBOL = ITEMS.register("plant_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> TOOL_SYMBOL = ITEMS.register("tool_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> CRAFT_SYMBOL = ITEMS.register("craft_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MECHANISM_SYMBOL = ITEMS.register("mechanism_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> TRAP_SYMBOL = ITEMS.register("trap_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> SOUL_SYMBOL = ITEMS.register("soul_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MIND_SYMBOL = ITEMS.register("mind_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> SENSES_SYMBOL = ITEMS.register("senses_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> AVERSION_SYMBOL = ITEMS.register("aversion_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> PROTECT_SYMBOL = ITEMS.register("protect_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> DESIRE_SYMBOL = ITEMS.register("desire_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> UNDEAD_SYMBOL = ITEMS.register("undead_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BEAST_SYMBOL = ITEMS.register("beast_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MAN_SYMBOL = ITEMS.register("man_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+
 
     public static void register(IEventBus pEventBus){
         ITEMS.register(pEventBus);

@@ -31,7 +31,7 @@ public class ModCreativeTab {
         pOutput.accept(ModItems.AIR_SHARD.get());
         pOutput.accept(ModItems.ENTROPY_SHARD.get());
         pOutput.accept(ModItems.ORDER_SHARD.get());
-        pOutput.accept(ModItems.MANA_SHARD.get());
+        pOutput.accept(ModItems.ALL_SHARD.get());
         pOutput.accept(ModItems.VOID_SHARD.get());
         pOutput.accept(ModItems.LIGHT_SHARD.get());
         pOutput.accept(ModItems.MOTION_SHARD.get());
