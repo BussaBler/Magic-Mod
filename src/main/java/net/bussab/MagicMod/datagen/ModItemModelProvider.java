@@ -77,6 +77,38 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.ORDER_SYMBOL);
         simpleItem(ModItems.ENTROPY_SYMBOL);
         simpleItem(ModItems.ALL_SYMBOL);
+
+        simpleItem(ModItems.VOID_SYMBOL);
+        simpleItem(ModItems.LIGHT_SYMBOL);
+        simpleItem(ModItems.MOTION_SYMBOL);
+        simpleItem(ModItems.COLD_SYMBOL);
+        simpleItem(ModItems.CRYSTAL_SYMBOL);
+        simpleItem(ModItems.METAL_SYMBOL);
+        simpleItem(ModItems.LIFE_SYMBOL);
+        simpleItem(ModItems.DEATH_SYMBOL);
+        simpleItem(ModItems.ENERGY_SYMBOL);
+        simpleItem(ModItems.EXCHANGE_SYMBOL);
+        simpleItem(ModItems.MAGIC_SYMBOL);
+        simpleItem(ModItems.AURA_SYMBOL);
+        simpleItem(ModItems.ALCHEMY_SYMBOL);
+        simpleItem(ModItems.FLUX_SYMBOL);
+        simpleItem(ModItems.DARKNESS_SYMBOL);
+        simpleItem(ModItems.ELDRITCH_SYMBOL);
+        simpleItem(ModItems.FLIGHT_SYMBOL);
+        simpleItem(ModItems.PLANT_SYMBOL);
+        simpleItem(ModItems.TOOL_SYMBOL);
+        simpleItem(ModItems.CRAFT_SYMBOL);
+        simpleItem(ModItems.MECHANISM_SYMBOL);
+        simpleItem(ModItems.TRAP_SYMBOL);
+        simpleItem(ModItems.SOUL_SYMBOL);
+        simpleItem(ModItems.MIND_SYMBOL);
+        simpleItem(ModItems.SENSES_SYMBOL);
+        simpleItem(ModItems.AVERSION_SYMBOL);
+        simpleItem(ModItems.PROTECT_SYMBOL);
+        simpleItem(ModItems.DESIRE_SYMBOL);
+        simpleItem(ModItems.UNDEAD_SYMBOL);
+        simpleItem(ModItems.BEAST_SYMBOL);
+        simpleItem(ModItems.MAN_SYMBOL);
     }
 
 

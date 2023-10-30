@@ -83,6 +83,7 @@ public class ModItems {
     public static final RegistryObject<Item> ENTROPY_SYMBOL = ITEMS.register("entropy_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ORDER_SYMBOL = ITEMS.register("order_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ALL_SYMBOL = ITEMS.register("all_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
+    
     public static final RegistryObject<Item> VOID_SYMBOL = ITEMS.register("void_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> LIGHT_SYMBOL = ITEMS.register("light_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MOTION_SYMBOL = ITEMS.register("motion_symbol", () -> new Item(new Item.Properties().stacksTo(1)));
