@@ -3,6 +3,8 @@ package net.bussab.MagicMod.events;
 import net.bussab.MagicMod.MagicMod;
 import net.bussab.MagicMod.block.entities.ModBlockEntities;
 import net.bussab.MagicMod.block.entities.renderer.CrucibleBERenderer;
+import net.bussab.MagicMod.item.armour.model.GogglesModel;
+import net.bussab.MagicMod.item.armour.model.ModModelLayers;
 import net.bussab.MagicMod.particles.CrucibleBubble;
 import net.bussab.MagicMod.particles.ModParticles;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,5 +26,11 @@ public class ModClientEvents {
         pEvent.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE_BE.get(), CrucibleBERenderer::new);
     }
 
+    @SubscribeEvent 
+    public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions pEvent){
+
+        pEvent.registerLayerDefinition(ModModelLayers.GOGGLES, GogglesModel::createBodyLayer);
+
+    }
 
 }
