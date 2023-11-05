@@ -12,9 +12,47 @@
     "item.magicmod.water_shard": "Water Shard",
     "item.magicmod.earth_shard": "Earth Shard",
     "item.magicmod.dark_shard": "Dark Shard",
-    "item.magicmod.light_shard": "Light Shard",
+    "item.magicmod.all_shard": "All Shard",
     "item.magicmod.mana_shard": "Mana Shard",
     "item.magicmod.blank_shard": "Blank Shard",
+
+    "item.magicmod.light_shard": "Light Shard",
+    "item.magicmod.motion_shard": "Motion Shard",
+    "item.magicmod.cold_shard": "Cold Shard",
+    "item.magicmod.crystal_shard": "Crystal Shard",
+    "item.magicmod.metal_shard": "Metal Shard",
+    "item.magicmod.life_shard": "Life Shard",
+    "item.magicmod.death_shard": "Death Shard",
+    "item.magicmod.energy_shard": "Energy Shard",
+    "item.magicmod.exchange_shard": "Exchange Shard",
+    "item.magicmod.magic_shard": "Magic Shard",
+    "item.magicmod.aura_shard": "Aura Shard",
+    "item.magicmod.alchemy_shard": "Alchemy Shard",
+    "item.magicmod.flux_shard": "Flux Shard",
+    "item.magicmod.darkness_shard": "Darkness Shard",
+    "item.magicmod.eldritch_shard": "Eldritch Shard",
+    "item.magicmod.flight_shard": "Flight Shard",
+    "item.magicmod.plant_shard": "Plant Shard",
+    "item.magicmod.tool_shard": "Tool Shard",
+    "item.magicmod.craft_shard": "Craft Shard",
+    "item.magicmod.mechanism_shard": "Mechanism Shard",
+    "item.magicmod.trap_shard": "Trap Shard",
+    "item.magicmod.soul_shard": "Soul Shard",
+    "item.magicmod.mind_shard": "Mind Shard",
+    "item.magicmod.senses_shard": "Senses Shard",
+    "item.magicmod.aversion_shard": "Aversion Shard",
+    "item.magicmod.protect_shard": "Protect Shard",
+    "item.magicmod.desire_shard": "Desire Shard",
+    "item.magicmod.undead_shard": "Undead Shard",
+    "item.magicmod.beast_shard": "Beast Shard",
+    "item.magicmod.man_shard": "Man Shard",
+
+    "item.magicmod.goggles": "Goggles of Revealing",
+    "item.magicmod.salis_mundus": "Salis Mundus",
+
+
+
+
     
     
     "creativetab.magic_mod": "Magic Tab"

@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,9 +28,10 @@ import net.minecraftforge.fml.common.Mod;
 public class ForgeEvents {
 
     private static boolean rendered = false;
-
+    
     @SubscribeEvent
     public static void onToolTipRender(RenderTooltipEvent pEvent){
+        
         
             if (EssentiaRegister.getObjectTag(pEvent.getItemStack())!=null && !rendered && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.GOGGLES.get()){
                 
