@@ -2,18 +2,25 @@ package net.bussab.MagicMod.essentia;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class EssentiaRegister {
     
-    public static ConcurrentHashMap<Integer, EssentiaList> objectTags = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<Integer, EssentiaList> idToEssentia = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, EssentiaList> tagToEssentia = new ConcurrentHashMap<>();
 
 
     public static void registerObjectTag(ItemStack pItemStack, EssentiaList essentias){
         if (essentias == null) essentias = new EssentiaList();
-        objectTags.put(generateItemID(pItemStack), essentias);
+        idToEssentia.put(generateItemID(pItemStack), essentias);
     }
 
+    public static void registerObjectTag(String pTagKey, EssentiaList essentias){
+        if (essentias == null) essentias = new EssentiaList();
+        tagToEssentia.put(pTagKey, essentias);
+    }
 
 
 
@@ -26,8 +33,20 @@ public class EssentiaRegister {
 
 
     public static EssentiaList getObjectTag(ItemStack pItemStack){
+        
+        for (TagKey<Item> T : pItemStack.getTags().toList()){
+            
+            if (tagToEssentia.containsKey(T.location().getPath())){
+                return tagToEssentia.get(T.location().getPath());
+            }
+        }
+
+
         int I = generateItemID(pItemStack);
-        return objectTags.get(I);
+        if (idToEssentia.containsKey(I)){
+            return idToEssentia.get(I);
+        }
+        return null; 
     }
 
 

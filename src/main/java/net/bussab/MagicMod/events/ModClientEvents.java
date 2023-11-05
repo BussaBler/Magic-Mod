@@ -23,4 +23,6 @@ public class ModClientEvents {
     public static void registerBER(EntityRenderersEvent.RegisterRenderers pEvent){
         pEvent.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE_BE.get(), CrucibleBERenderer::new);
     }
+
+
 }

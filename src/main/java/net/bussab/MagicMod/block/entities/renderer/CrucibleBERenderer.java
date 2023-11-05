@@ -3,14 +3,12 @@ package net.bussab.MagicMod.block.entities.renderer;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 
 import net.bussab.MagicMod.block.ModBlocks;
 import net.bussab.MagicMod.block.entities.CrucibleEntity;
 import net.bussab.MagicMod.essentia.Essentia;
 import net.bussab.MagicMod.gui.HoverTextRender;
-import net.bussab.MagicMod.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -22,7 +20,6 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -32,20 +29,20 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.model.data.ModelData;
 
 public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
-
-
+    
+    
         
     
 
     public CrucibleBERenderer (BlockEntityRendererProvider.Context pContext){
-       
+        
     }
-
+    
     
     @Override
     public void render(CrucibleEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
             int pPackedLight, int pPackedOverlay) {
-
+        
         BlockRenderDispatcher blockRenderDispatcher = Minecraft.getInstance().getBlockRenderer();
         BlockState blockState = ModBlocks.CUSTOM_WATER.get().defaultBlockState();
         if(pBlockEntity.getTank() > 0 ){
@@ -62,7 +59,7 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
         }
         
         if (HoverTextRender.hovering == true && !pBlockEntity.getEssentiaList().isEmpty()){
-            //Font font = Minecraft.getInstance().font;
+            Font font = Minecraft.getInstance().font;
             
             Vec3 blockVec = new Vec3(pBlockEntity.getBlockPos().getX() + 0.5, 0.5, pBlockEntity.getBlockPos().getZ() + 0.5);
             Vec3 playerVec = new Vec3(Minecraft.getInstance().player.getX(), Minecraft.getInstance().player.getY(), Minecraft.getInstance().player.getZ());
@@ -79,7 +76,8 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
 
             for (Essentia E : pBlockEntity.getEssentiaList().getEssentias()) {
 
-                Component C = Component.literal("TESTE");
+                Component Comp = Component.literal(String.valueOf(pBlockEntity.getEssentiaList().getAmount(E)));
+                //System.out.println(E.getName()+" "+pBlockEntity.getEssentiaList().getAmount(E));
                 
                 pPoseStack.pushPose();
                 pPoseStack.translate(0.5 , 1.5, 0.5); // Adjust the translation as needed
@@ -89,23 +87,34 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
                 
                 pPoseStack.mulPose(Axis.YP.rotation(-yaw)); // Rotate based on yaw
                 
-                Matrix4f matrix4f = pPoseStack.last().pose();
+                
                 ItemStack II = new ItemStack(Essentia.SymbolChart.get(E));
                 
 
                 ItemRenderer IR = Minecraft.getInstance().getItemRenderer();
+                
                 IR.renderStatic(II, ItemDisplayContext.GUI, pPackedLight, OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), 1);
                 i+=0.2;
+
+                pPoseStack.translate(0.1 , 1.5, 0.3); // Adjust the translation as needed
+                
+                pPoseStack.mulPose(new Quaternionf(1, 0, 0, 0));
+                pPoseStack.scale(0.07F, 0.07F, 0.07F);
+
+                
+                float f1 = Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
+                float f2 = (float)(-font.width(Comp) / 2);
+                Matrix4f matrix4f = pPoseStack.last().pose();
+
+                font.drawInBatch(Comp, f2, 0f, 0xFFFFFF, false, matrix4f, pBuffer, Font.DisplayMode.NORMAL, (int)f1, pPackedLight);
+                
+
+
                 pPoseStack.popPose();
             }
+
             
-            
-            
-            //float f1 = Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
-            //int j = (int) (f1 * 255.0F) << 24;
-            //float f2 = (-font.width(C));
-            //font.drawInBatch(C, f2, 0, 553648127, false, matrix4f, pBuffer, Font.DisplayMode.NORMAL, j, pPackedLight);
-            //pPoseStack.popPose();
+        
         }
         
     }

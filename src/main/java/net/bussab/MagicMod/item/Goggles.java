@@ -9,5 +9,4 @@ public class Goggles extends ArmorItem {
         super(pMaterial, pType, pProperties);
     }
     
-    
 }

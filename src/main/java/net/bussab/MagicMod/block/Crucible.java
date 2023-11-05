@@ -46,7 +46,7 @@ public class Crucible extends BaseEntityBlock  {
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
     private static boolean SUCCESS;
 
-
+  
     public Crucible(Properties pProperties) {
         super(pProperties);
         
@@ -64,6 +64,10 @@ public class Crucible extends BaseEntityBlock  {
 
       SUCCESS = false;
       if (!pLevel.isClientSide()){
+        if (pPlayer.isShiftKeyDown() && pPlayer.getItemInHand(pHand).isEmpty()){
+            ((CrucibleEntity)pLevel.getBlockEntity(pPos)).emptyEssentia();
+            return InteractionResult.sidedSuccess(pLevel.isClientSide());
+        }
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         CrucibleEntity CBE = (CrucibleEntity) pLevel.getBlockEntity(pPos);
 
@@ -71,7 +75,7 @@ public class Crucible extends BaseEntityBlock  {
         
         int drainAmount = Math.min(CBE.getTankSize(), 1000);
         FluidStack fStack = IFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
-        System.out.println(fStack.getFluid());
+        
         if (fStack.getFluid() == Fluids.WATER){
             
             fStack = IFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
@@ -79,6 +83,7 @@ public class Crucible extends BaseEntityBlock  {
             pPlayer.setItemInHand(pHand, IFluidHandlerItem.getContainer());
             SUCCESS = true;
         }
+
           
         });
       }
@@ -91,7 +96,7 @@ public class Crucible extends BaseEntityBlock  {
     public void entityInside(BlockState pBlockState,Level pLevel, BlockPos pPos, Entity pEntity){
         CrucibleEntity CE = ((CrucibleEntity)pLevel.getBlockEntity(pPos));
         
-        if (pEntity instanceof ItemEntity){
+        if (pEntity instanceof ItemEntity && !pLevel.isClientSide()){
           ItemEntity itemEntity = ((ItemEntity)pEntity);
           CE.attemptSmelt(itemEntity, itemEntity.getDeltaMovement());
           
@@ -156,7 +161,7 @@ public class Crucible extends BaseEntityBlock  {
       CrucibleEntity pBlockEntity = (CrucibleEntity) pLevel.getBlockEntity(pPos);
       
       
-      if (pBlockEntity.getHeat() == 200){
+      if (pBlockEntity.getHeat() == 200 && pBlockEntity.getTank()>0){
           makeParticles(pLevel, pPos);
       }
     }
@@ -190,4 +195,6 @@ public class Crucible extends BaseEntityBlock  {
 
         return createTickerHelper(pBlockEntityType, ModBlockEntities.CRUCIBLE_BE.get(), (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
+
+    
 }

@@ -139,7 +139,14 @@ public class CrucibleEntity extends BlockEntity  {
     }
 
     public EssentiaList getEssentiaList(){
+        
         return this.essentiaList;
+        
+    }
+
+    public void emptyEssentia(){
+        this.essentiaList = new EssentiaList();
+        this.level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
 
 
@@ -186,10 +193,10 @@ public class CrucibleEntity extends BlockEntity  {
                 FLUID_TANK.drain(50, FluidAction.EXECUTE);
                 ejectItem(out, pVec3);
                 
-                item.kill();
+                --size;
                 setChanged(level, worldPosition, getBlockState());
             }
-
+            
             else {
                 EssentiaList eL =  EssentiaRegister.getObjectTag(pItem.getDefaultInstance());
                 if (eL != null){
@@ -197,11 +204,12 @@ public class CrucibleEntity extends BlockEntity  {
                     for (Essentia E: eL.getEssentias()){
                         essentiaList.add(E, eL.getAmount(E));
                     }
-                    level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+                    if (!level.isClientSide()) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
                     item.kill();
                     setChanged();
                 }
             }
+            item.getItem().setCount(size);
         }
         
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
@@ -238,12 +246,15 @@ public class CrucibleEntity extends BlockEntity  {
     }
     
     private void readEssentiaFromNBT(CompoundTag pTag){
+        EssentiaList tempEssentiaList = new EssentiaList();
         ListTag lTag = pTag.getList("Essentia", (byte)10);
             for (int i = 0; i < lTag.size(); i++){
                 CompoundTag T = lTag.getCompound(i);
+                 
+                tempEssentiaList.add(Essentia.getEssentia(T.getString("key")), T.getInt("amount"));
                 
-                this.essentiaList.add(Essentia.getEssentia(T.getString("key")), T.getInt("amount"));
             }
+        this.essentiaList = tempEssentiaList; 
     }
     
      
