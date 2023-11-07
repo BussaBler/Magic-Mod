@@ -1,9 +1,12 @@
 package net.bussab.MagicMod.block;
 
 
+import java.util.Map;
+
 import net.bussab.MagicMod.block.entities.CrucibleEntity;
 import net.bussab.MagicMod.block.entities.ModBlockEntities;
 import net.bussab.MagicMod.particles.ModParticles;
+import net.bussab.MagicMod.util.CrucibleInteractions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
@@ -13,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,9 +37,6 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public class Crucible extends BaseEntityBlock  {
 
@@ -44,11 +45,13 @@ public class Crucible extends BaseEntityBlock  {
     protected static final int FLOOR_LEVEL = 4;
     private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
-    private static boolean SUCCESS;
+   
+    private final Map<Item, CrucibleInteractions> interactions;
+    
+    public Crucible(Properties pProperties, Map<Item, CrucibleInteractions> pInteractions) {
 
-  
-    public Crucible(Properties pProperties) {
         super(pProperties);
+        this.interactions = pInteractions;
         
         
     }
@@ -62,34 +65,27 @@ public class Crucible extends BaseEntityBlock  {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-      SUCCESS = false;
+      
+
+      if (pLevel.isClientSide()){
+        if ((pPlayer.isShiftKeyDown() && pPlayer.getItemInHand(pHand).isEmpty()))
+           return InteractionResult.SUCCESS;
+      }
+
+      
       if (!pLevel.isClientSide()){
         if (pPlayer.isShiftKeyDown() && pPlayer.getItemInHand(pHand).isEmpty()){
             ((CrucibleEntity)pLevel.getBlockEntity(pPos)).emptyEssentia();
             return InteractionResult.sidedSuccess(pLevel.isClientSide());
         }
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        CrucibleEntity CBE = (CrucibleEntity) pLevel.getBlockEntity(pPos);
 
-        itemstack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(IFluidHandlerItem -> {
-        
-        int drainAmount = Math.min(CBE.getTankSize(), 1000);
-        FluidStack fStack = IFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
-        
-        if (fStack.getFluid() == Fluids.WATER){
-            
-            fStack = IFluidHandlerItem.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
-            CBE.fillTank(fStack);
-            pPlayer.setItemInHand(pHand, IFluidHandlerItem.getContainer());
-            SUCCESS = true;
-        }
-
-          
-        });
       }
-      if (SUCCESS == true) return InteractionResult.sidedSuccess(pLevel.isClientSide());
       
-      else return InteractionResult.PASS;
+      ItemStack stack = pPlayer.getItemInHand(pHand);
+      CrucibleInteractions cInteractions = this.interactions.get(stack.getItem());
+      return cInteractions.interact(pLevel, pPos, pPlayer, pHand, stack);
+      
+      
     }
 
     @Override
@@ -117,6 +113,7 @@ public class Crucible extends BaseEntityBlock  {
     * net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#hasAnalogOutputSignal} whenever possible.
     * Implementing/overriding is fine.
     */
+    @Deprecated
     public boolean hasAnalogOutputSignal(BlockState pState) {
       return true;
     }

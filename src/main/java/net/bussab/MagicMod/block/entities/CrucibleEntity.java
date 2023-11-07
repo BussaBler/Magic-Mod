@@ -37,7 +37,7 @@ public class CrucibleEntity extends BlockEntity  {
     
     
     private int HEAT;
-    private final FluidTank FLUID_TANK = createFluidTank();
+    public final FluidTank FLUID_TANK = createFluidTank();
     private EssentiaList essentiaList = new EssentiaList();
 
     private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
@@ -83,6 +83,7 @@ public class CrucibleEntity extends BlockEntity  {
     public void fillTank(FluidStack fStack){
         this.FLUID_TANK.fill(new FluidStack(fStack.getFluid(), fStack.getAmount()), IFluidHandler.FluidAction.EXECUTE);
     }
+    
     
 
     public void onLoad(){
@@ -147,6 +148,7 @@ public class CrucibleEntity extends BlockEntity  {
     public void emptyEssentia(){
         this.essentiaList = new EssentiaList();
         this.level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        setChanged(level, worldPosition, this.getBlockState());
     }
 
 
@@ -173,9 +175,9 @@ public class CrucibleEntity extends BlockEntity  {
             
         }
     }
-
+    
     public void attemptSmelt(ItemEntity item, Vec3 pVec3) {
-        boolean craftDone = false; 
+        
         Item pItem = item.getItem().getItem();
         
         int size = item.getItem().getCount();

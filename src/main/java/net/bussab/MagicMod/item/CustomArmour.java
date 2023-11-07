@@ -1,7 +1,6 @@
 package net.bussab.MagicMod.item;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.ApiStatus.OverrideOnly;
 
 import java.util.function.Consumer;
 import net.bussab.MagicMod.MagicMod;

@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import net.bussab.MagicMod.MagicMod;
 import net.bussab.MagicMod.item.ModItems;
+import net.bussab.MagicMod.util.CrucibleInteractions;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +20,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MagicMod.MOD_ID);
 
     public static final RegistryObject<Block> CRUCIBLE = registerBlock("crucible", 
-    ()-> new Crucible(BlockBehaviour.Properties.copy(Blocks.CAULDRON)));
+    ()-> new Crucible(BlockBehaviour.Properties.copy(Blocks.CAULDRON), CrucibleInteractions.EMPTY));
 
     
 

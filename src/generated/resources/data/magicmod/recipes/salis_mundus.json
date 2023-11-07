@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "magicmod:air_shard"
+    },
+    {
+      "item": "magicmod:earth_shard"
+    },
+    {
+      "item": "magicmod:entropy_shard"
+    },
+    {
+      "item": "magicmod:fire_shard"
+    },
+    {
+      "item": "magicmod:order_shard"
+    },
+    {
+      "item": "magicmod:water_shard"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "magicmod:salis_mundus"
+  }
+}

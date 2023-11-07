@@ -9,6 +9,7 @@ import net.bussab.MagicMod.item.ModCreativeTab;
 import net.bussab.MagicMod.item.ModItems;
 import net.bussab.MagicMod.particles.ModParticles;
 import net.bussab.MagicMod.recipe.ConfigRecipes;
+import net.bussab.MagicMod.util.CrucibleInteractions;
 import net.bussab.MagicMod.util.ModBlockColours;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -58,7 +59,9 @@ public class MagicMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        event.enqueueWork(()-> {
+            CrucibleInteractions.bootStrap();
+        });
     }
 
     // Add the example block item to the building blocks tab
