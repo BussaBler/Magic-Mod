@@ -10,6 +10,8 @@ import net.bussab.MagicMod.util.CrucibleInteractions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -107,7 +109,7 @@ public class Crucible extends BaseEntityBlock  {
     public VoxelShape getInteractionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
       return INSIDE;
     }
-
+    
    /**
     * @deprecated call via {@link
     * net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#hasAnalogOutputSignal} whenever possible.
@@ -142,14 +144,15 @@ public class Crucible extends BaseEntityBlock  {
 
     protected void receiveStalactiteDrip(BlockState pState, Level pLevel, BlockPos pPos, Fluid pFluid) {
     }
-
+    
 
     public static void makeParticles(Level pLevel, BlockPos pPos){
 
       SimpleParticleType simpleParticleType = ModParticles.CRUCIBLE_BUBBLE.get();
       RandomSource randomSource = pLevel.getRandom();
       
-     
+      
+      
       pLevel.addAlwaysVisibleParticle(simpleParticleType, true, pPos.getX()+randomSource.nextDouble()-(3/16), (double)pPos.getY()+1, pPos.getZ()+randomSource.nextDouble()-(3/16), 0d, 0d, 0d);
     }
 
@@ -159,6 +162,8 @@ public class Crucible extends BaseEntityBlock  {
       
       
       if (pBlockEntity.getHeat() == 200 && pBlockEntity.getTank()>0){
+          if (pRandom.nextDouble() > 0.5D)
+          pLevel.playLocalSound(pPos, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.3f, 1f, false);
           makeParticles(pLevel, pPos);
       }
     }

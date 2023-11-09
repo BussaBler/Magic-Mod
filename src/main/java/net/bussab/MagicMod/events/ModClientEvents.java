@@ -3,6 +3,7 @@ package net.bussab.MagicMod.events;
 import net.bussab.MagicMod.MagicMod;
 import net.bussab.MagicMod.block.entities.ModBlockEntities;
 import net.bussab.MagicMod.block.entities.renderer.CrucibleBERenderer;
+import net.bussab.MagicMod.block.entities.renderer.NitorBERenderer;
 import net.bussab.MagicMod.item.armour.model.GogglesModel;
 import net.bussab.MagicMod.item.armour.model.ModModelLayers;
 import net.bussab.MagicMod.particles.CrucibleBubble;
@@ -24,6 +25,7 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers pEvent){
         pEvent.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE_BE.get(), CrucibleBERenderer::new);
+        pEvent.registerBlockEntityRenderer(ModBlockEntities.NITOR_BE.get(), NitorBERenderer::new);
     }
 
     @SubscribeEvent 

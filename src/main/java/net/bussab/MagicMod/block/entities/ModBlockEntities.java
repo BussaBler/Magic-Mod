@@ -14,7 +14,7 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MagicMod.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<CrucibleEntity>> CRUCIBLE_BE = BLOCK_ENTITIES.register("crucible_block_entity", ()-> BlockEntityType.Builder.of(CrucibleEntity::new, ModBlocks.CRUCIBLE.get()).build(null));
-
+    public static final RegistryObject<BlockEntityType<NitorEntity>> NITOR_BE = BLOCK_ENTITIES.register("nitor_block_entity", ()-> BlockEntityType.Builder.of(NitorEntity::new, ModBlocks.NITOR.get()).build(null));
 
     public static void register(IEventBus pEventBus){
         BLOCK_ENTITIES.register(pEventBus);

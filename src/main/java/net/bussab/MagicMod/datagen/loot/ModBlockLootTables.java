@@ -18,7 +18,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     public void generate(){
         this.dropOther(ModBlocks.CRUCIBLE.get(), Items.CAULDRON);
-        this.add(ModBlocks.CUSTOM_WATER.get(), noDrop());
+        
 
     }
 

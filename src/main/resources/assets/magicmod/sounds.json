@@ -1,0 +1,19 @@
+{
+    "crucible_bubbles":{
+        "subtitle": "sounds.magicmod.crucible_bubbles",
+        "sounds": [
+            "magicmod:crucible_bubbles_1",
+            "magicmod:crucible_bubbles_2",
+            "magicmod:crucible_bubbles_3",
+            "magicmod:crucible_bubbles_4"
+        ]
+    },
+    "poof_sound":{
+        "subtitle": "sounds.magicmod.poof_sound",
+        "sounds": [
+            "magicmod:poof_1",
+            "magicmod:poof_2"
+        ]
+    }
+    
+}

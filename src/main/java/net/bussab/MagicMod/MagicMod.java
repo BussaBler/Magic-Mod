@@ -9,6 +9,7 @@ import net.bussab.MagicMod.item.ModCreativeTab;
 import net.bussab.MagicMod.item.ModItems;
 import net.bussab.MagicMod.particles.ModParticles;
 import net.bussab.MagicMod.recipe.ConfigRecipes;
+import net.bussab.MagicMod.sound.ModSounds;
 import net.bussab.MagicMod.util.CrucibleInteractions;
 import net.bussab.MagicMod.util.ModBlockColours;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,6 +47,7 @@ public class MagicMod
         ModCreativeTab.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModParticles.register(modEventBus);
+        ModSounds.register(modEventBus);
        
         
         // Register ourselves for server and other game events we are interested in
@@ -91,7 +93,7 @@ public class MagicMod
         }
         @SubscribeEvent
         public static void registerBlockColors(RegisterColorHandlersEvent.Block pEvent){
-           pEvent.register(new ModBlockColours(), ModBlocks.CUSTOM_WATER.get());
+           
           
         }
 

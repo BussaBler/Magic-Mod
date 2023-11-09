@@ -8,6 +8,7 @@ import net.bussab.MagicMod.essentia.Essentia;
 import net.bussab.MagicMod.essentia.EssentiaList;
 import net.bussab.MagicMod.essentia.EssentiaRegister;
 import net.bussab.MagicMod.recipe.CrucibleRecipes;
+import net.bussab.MagicMod.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +17,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -151,6 +153,12 @@ public class CrucibleEntity extends BlockEntity  {
         setChanged(level, worldPosition, this.getBlockState());
     }
 
+    public void makeSound(){
+        BlockPos pPos = this.getBlockPos();
+        
+        this.level.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getY(), ModSounds.CRUCIBLE_BUBBLE.get(), SoundSource.BLOCKS, 1f, 1f, 0);
+    }
+
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState1) {
         
@@ -179,7 +187,7 @@ public class CrucibleEntity extends BlockEntity  {
     public void attemptSmelt(ItemEntity item, Vec3 pVec3) {
         
         Item pItem = item.getItem().getItem();
-        
+        BlockPos pPos = this.getBlockPos();
         int size = item.getItem().getCount();
         
 
@@ -197,6 +205,7 @@ public class CrucibleEntity extends BlockEntity  {
                 
                 --size;
                 setChanged(level, worldPosition, getBlockState());
+                this.level.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.POOF_SOUND.get(), SoundSource.BLOCKS, 1f, 1f, 0);
             }
             
             else {
@@ -209,6 +218,8 @@ public class CrucibleEntity extends BlockEntity  {
                     if (!level.isClientSide()) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
                     item.kill();
                     setChanged();
+                    
+                    this.level.playSeededSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CRUCIBLE_BUBBLE.get(), SoundSource.BLOCKS, 1f, 0, 0);
                 }
             }
             item.getItem().setCount(size);

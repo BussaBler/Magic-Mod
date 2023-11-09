@@ -1,11 +1,12 @@
 package net.bussab.MagicMod.block.entities.renderer;
 
+import org.joml.Math;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 
-import net.bussab.MagicMod.block.ModBlocks;
 import net.bussab.MagicMod.block.entities.CrucibleEntity;
 import net.bussab.MagicMod.essentia.Essentia;
 import net.bussab.MagicMod.gui.HoverTextRender;
@@ -18,15 +19,19 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.model.data.ModelData;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 
 public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
     
@@ -43,19 +48,43 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
     public void render(CrucibleEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer,
             int pPackedLight, int pPackedOverlay) {
         
-        BlockRenderDispatcher blockRenderDispatcher = Minecraft.getInstance().getBlockRenderer();
-        BlockState blockState = ModBlocks.CUSTOM_WATER.get().defaultBlockState();
+        
         if(pBlockEntity.getTank() > 0 ){
             int fluidHeight = pBlockEntity.getTank();
             double correctFluidHeight =  fluidHeight*0.0006875 - 0.6875;
             
 
             pPoseStack.pushPose();
-            pPoseStack.scale(0.9375f, 0.9375f, 0.9375f);
+            pPoseStack.scale(1, 0.9375f, 1);
             pPoseStack.translate(0, correctFluidHeight, 0);
         
-            renderSingleBlock(blockRenderDispatcher, blockState, pPoseStack, pBuffer, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.translucent());
-            pPoseStack.popPose();
+            
+            
+
+            Fluid f = pBlockEntity.FLUID_TANK.getFluid().getFluid();
+            if (f != Fluids.EMPTY){
+                
+                IClientFluidTypeExtensions fluidType = IClientFluidTypeExtensions.of(f);
+                TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(fluidType.getStillTexture(f.defaultFluidState(), pBlockEntity.getLevel(), pBlockEntity.getBlockPos()));
+                
+                float minU = sprite.getU0();
+                
+                float minV = sprite.getV0();
+               
+                int waterColor = fluidType.getTintColor(f.defaultFluidState(), pBlockEntity.getLevel(), pBlockEntity.getBlockPos());
+                float red = (waterColor >> 16 & 255) / 255F;
+                float green = (waterColor >> 8 & 255) / 255F;
+                float blue = (waterColor & 255) / 255F;
+
+                VertexConsumer vertexConsumer = pBuffer.getBuffer(RenderType.translucent());
+                
+                Matrix4f m = pPoseStack.last().pose();
+                vertexConsumer.vertex(m, (float)0, (float)1, (float)0).color(red, green, blue, 1f).uv(sprite.getU1(), minV).uv2(pPackedLight).normal(0, 1f, 0).endVertex();
+                vertexConsumer.vertex(m, (float)0, (float)1, (float)(1)).color(red, green, blue, 1f).uv(minU, minV).uv2(pPackedLight).normal(0, 1f, 0).endVertex();
+                vertexConsumer.vertex(m, (float)(1), (float)1, (float)(1)).color(red, green, blue, 1f).uv(minU, sprite.getV1()).uv2(pPackedLight).normal(0, 1f, 0).endVertex();
+                vertexConsumer.vertex(m, (float)(1), (float)1, (float)0).color(red, green, blue, 1f).uv(sprite.getU1(), sprite.getV1()).uv2(pPackedLight).normal(0, 1f, 0).endVertex();
+                pPoseStack.popPose();
+            }
         }
         
         if (HoverTextRender.hovering == true && !pBlockEntity.getEssentiaList().isEmpty()){
