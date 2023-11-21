@@ -8,6 +8,7 @@ import net.bussab.MagicMod.item.armour.model.GogglesModel;
 import net.bussab.MagicMod.item.armour.model.ModModelLayers;
 import net.bussab.MagicMod.particles.CrucibleBubble;
 import net.bussab.MagicMod.particles.ModParticles;
+import net.bussab.MagicMod.particles.NitorFlames;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -20,6 +21,7 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent pEvent){
         pEvent.registerSpriteSet(ModParticles.CRUCIBLE_BUBBLE.get(), CrucibleBubble.Provider::new);
+        pEvent.registerSpriteSet(ModParticles.NITOR_FLAMES.get(), NitorFlames.Provider::new);
     }
 
     @SubscribeEvent

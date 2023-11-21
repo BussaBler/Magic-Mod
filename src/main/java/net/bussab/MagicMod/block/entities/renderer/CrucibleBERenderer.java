@@ -65,6 +65,7 @@ public class CrucibleBERenderer implements BlockEntityRenderer<CrucibleEntity> {
             if (f != Fluids.EMPTY){
                 
                 IClientFluidTypeExtensions fluidType = IClientFluidTypeExtensions.of(f);
+                
                 TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(fluidType.getStillTexture(f.defaultFluidState(), pBlockEntity.getLevel(), pBlockEntity.getBlockPos()));
                 
                 float minU = sprite.getU0();

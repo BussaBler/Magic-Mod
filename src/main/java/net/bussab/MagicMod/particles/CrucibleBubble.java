@@ -13,14 +13,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class CrucibleBubble extends TextureSheetParticle {
 
     protected CrucibleBubble(ClientLevel pLevel, double pX, double pY, double pZ,SpriteSet pSpriteSet, double pXSpeed, double pYSpeed,double pZSpeed){
-        super(pLevel, pX, pY, pZ);
-      this.setSize(0.02F, 0.02F);
-      this.quadSize *= this.random.nextFloat() * 0.6F + 0.2F;
-      this.xd = pXSpeed * (double)0.2F + (Math.random() * 2.0D - 1.0D) * (double)0.02F;
-      this.yd = pYSpeed * (double)0.2F + (Math.random() * 2.0D - 1.0D) * (double)0.02F;
-      this.zd = pZSpeed * (double)0.2F + (Math.random() * 2.0D - 1.0D) * (double)0.02F;
-      this.lifetime = (int)(20.0D);
-      this.setSpriteFromAge(pSpriteSet);
+         super(pLevel, pX, pY, pZ);
+         this.setSize(0.02F, 0.02F);
+         this.quadSize *= this.random.nextFloat() * 0.6F + 0.2F;
+         this.xd = pXSpeed * (double)0.2F + (Math.random() * 2.0D - 1.0D) * (double)0.02F;
+         this.yd = pYSpeed * (double)0.2F + (Math.random() * 2.0D - 1.0D) * (double)0.02F;
+         this.zd = pZSpeed * (double)0.2F + (Math.random() * 2.0D - 1.0D) * (double)0.02F;
+         this.lifetime = (int)(20.0D);
+         this.setSpriteFromAge(pSpriteSet);
    }
 
    public void tick() {
@@ -51,7 +51,7 @@ public class CrucibleBubble extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    @OnlyIn(Dist.CLIENT)
+   @OnlyIn(Dist.CLIENT)
    public static class Provider implements ParticleProvider<SimpleParticleType> {
       private final SpriteSet sprite;
 
