@@ -1,3 +1,10 @@
-// 1.20.1	2023-10-08T21:04:50.6435235	Loot Tables
+// 1.20.1	2023-11-26T00:15:51.1869262	Loot Tables
+4043e511de679cc96a8ab84bae8e1517a5dee7c2 data/magicmod/loot_tables/blocks/black_nitor.json
+e65b7038fb6cdd0841bf8c15e106f5da0e40d5b2 data/magicmod/loot_tables/blocks/blue_nitor.json
 64df9c435ca9cee67568372e7344f50cb69949f1 data/magicmod/loot_tables/blocks/crucible.json
-7c6aa5a7ad3ba00928153a70c8ead1d780286465 data/magicmod/loot_tables/blocks/custom_water.json
+6712011dba56eaf02eef868ae19e46d606b3b8f3 data/magicmod/loot_tables/blocks/green_nitor.json
+58f997de086ea574860a110226a0338a1b18f463 data/magicmod/loot_tables/blocks/nitor.json
+8951614280c28e7ee275277e92c563c79c93042e data/magicmod/loot_tables/blocks/pink_nitor.json
+9f841f50a73d481ea3237e5fd62b96c41ae2c714 data/magicmod/loot_tables/blocks/purple_nitor.json
+d271133f165bc5bcaa9da290685105d2c4bdc373 data/magicmod/loot_tables/blocks/red_nitor.json
+f27d295bd2e5ce8d1808a09d1be0cd33f4771bf8 data/magicmod/loot_tables/blocks/white_nitor.json

@@ -13,7 +13,7 @@ public class ModParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, MagicMod.MOD_ID);
 
     public static final RegistryObject<SimpleParticleType> CRUCIBLE_BUBBLE = PARTICLE_TYPES.register("crucible_bubble", ()-> new SimpleParticleType(true));
-
+    
     public static final RegistryObject<SimpleParticleType> NITOR_FLAMES = PARTICLE_TYPES.register("nitor_flames", ()-> new SimpleParticleType(true));
 
     public static void register(IEventBus  pEventBus){

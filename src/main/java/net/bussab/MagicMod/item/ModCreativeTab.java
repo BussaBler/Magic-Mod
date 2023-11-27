@@ -1,6 +1,7 @@
 package net.bussab.MagicMod.item;
 
 import net.bussab.MagicMod.MagicMod;
+import net.bussab.MagicMod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -64,6 +65,14 @@ public class ModCreativeTab {
         pOutput.accept(ModItems.BEAST_SHARD.get());
         pOutput.accept(ModItems.MAN_SHARD.get());
 
+        pOutput.accept(ModBlocks.NITOR.get());
+        pOutput.accept(ModBlocks.PURPLE_NITOR.get());
+        pOutput.accept(ModBlocks.GREEN_NITOR.get());
+        pOutput.accept(ModBlocks.BLUE_NITOR.get());
+        pOutput.accept(ModBlocks.PINK_NITOR.get());
+        pOutput.accept(ModBlocks.RED_NITOR.get());
+        pOutput.accept(ModBlocks.BLACK_NITOR.get());
+        pOutput.accept(ModBlocks.WHITE_NITOR.get());
         
         pOutput.accept(ModItems.GOGGLES.get());
 

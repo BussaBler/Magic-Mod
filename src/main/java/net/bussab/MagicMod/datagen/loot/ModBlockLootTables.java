@@ -18,8 +18,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     public void generate(){
         this.dropOther(ModBlocks.CRUCIBLE.get(), Items.CAULDRON);
-        
-
+        this.dropSelf(ModBlocks.NITOR.get());
+        this.dropSelf(ModBlocks.PURPLE_NITOR.get());
+        this.dropSelf(ModBlocks.GREEN_NITOR.get());
+        this.dropSelf(ModBlocks.BLUE_NITOR.get());
+        this.dropSelf(ModBlocks.PINK_NITOR.get());
+        this.dropSelf(ModBlocks.RED_NITOR.get());
+        this.dropSelf(ModBlocks.BLACK_NITOR.get());
+        this.dropSelf(ModBlocks.WHITE_NITOR.get());
     }
 
 
