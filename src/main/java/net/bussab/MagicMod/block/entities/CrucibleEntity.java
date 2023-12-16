@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 
+import net.bussab.MagicMod.block.Nitor;
 import net.bussab.MagicMod.essentia.Essentia;
 import net.bussab.MagicMod.essentia.EssentiaList;
 import net.bussab.MagicMod.essentia.EssentiaRegister;
@@ -166,7 +167,8 @@ public class CrucibleEntity extends BlockEntity  {
         if (this.FLUID_TANK.getFluidAmount() > 0){
             BlockState block = pLevel.getBlockState(pPos.below());
             
-            if (block == Blocks.LAVA.defaultBlockState() || block == Blocks.FIRE.defaultBlockState() || block == Blocks.MAGMA_BLOCK.defaultBlockState()){
+            
+            if (block == Blocks.LAVA.defaultBlockState() || block == Blocks.FIRE.defaultBlockState() || block == Blocks.MAGMA_BLOCK.defaultBlockState() || block.getBlock() instanceof Nitor){
                 if (this.HEAT < 200){
                     ++this.HEAT;
                     this.level.sendBlockUpdated(pPos, pState1, pState1, 3);

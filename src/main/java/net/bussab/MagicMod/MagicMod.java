@@ -6,6 +6,7 @@ import net.bussab.MagicMod.block.ModBlocks;
 import net.bussab.MagicMod.block.entities.ModBlockEntities;
 import net.bussab.MagicMod.essentia.ConfigEssentia;
 import net.bussab.MagicMod.item.ModCreativeTab;
+import net.bussab.MagicMod.item.ModItemProperties;
 import net.bussab.MagicMod.item.ModItems;
 import net.bussab.MagicMod.particles.ModParticles;
 import net.bussab.MagicMod.recipe.ConfigRecipes;
@@ -87,7 +88,9 @@ public class MagicMod
         public static void onClientSetup(FMLClientSetupEvent event){
             ConfigEssentia.postInit();
             ConfigRecipes.initializeAlchemyRecipes();
-
+            event.enqueueWork(()-> {
+                ModItemProperties.addCustomItemProperties();
+            });
         
            
         }
